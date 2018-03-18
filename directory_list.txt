@@ -1,0 +1,15 @@
+//list directory of this project
+
+/check_homework(project)
+    /test
+        /*.*(test files)
+        /input.txt
+        /output.txt
+    /check_homework(codes)
+    /works
+        /*(students' works,named with school number)
+            /bin
+                /*.*(library files)
+                /wc.txt
+    /outputs(include all students' program's output
+        /*.txt(named with school number)
