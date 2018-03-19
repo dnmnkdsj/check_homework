@@ -13,3 +13,5 @@
                 /wc.txt
     /outputs(include all students' program's output
         /*.txt(named with school number)
+    /rank(output the result of comparison outputs, use csv file)
+        /rank.csv
