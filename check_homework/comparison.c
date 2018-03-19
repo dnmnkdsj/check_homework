@@ -6,7 +6,7 @@
 #include <stdlib.h>
 
 FILE *open_standard();
-FILE **open_outputs();
+FILE **open_outputs(FILE **);
 /**
  * compare students' program's output with standard output,and compute difference by line
  * @param standard
@@ -19,7 +19,8 @@ void comparison() {
 	printf("comparison run.\n");
 	//open files
 	FILE *standard = open_standard();
-	FILE **outputs = open_outputs();
+	FILE **outputs[500];//todo design a data structure to handle outputs file
+//	outputs= open_outputs(outputs);
 	printf("comparison run completely.\n");
 }
 
@@ -33,14 +34,17 @@ FILE *open_standard() {
 	return output;
 }
 
-FILE ** open_outputs() {
-	FILE *outputs;
-	FILE *list = fopen(url_output_list, "r");
-	char a[15];
-	int tag = 0;
-	while (fgets(a, 15, list)) {//get number from list, end with "\n"
-		printf("%s", a);
+FILE ** open_outputs(FILE ** outputs) {
+	FILE *list;
+	if ((list = fopen(url_output_list, "r")) == NULL) //open school number file.
+	{
+		printf("error: School number list file cannot be opened.\n");
 	}
-
+	char school_number[15];//ues char array as str to store school number and deliver
+	while (fgets(school_number, 15, list)) {//get number from list, end with "\n"
+		printf("%s", school_number);
+		//todo for each student, store it's file pointer into outputs array
+		//todo design error dealer
+	}
 	return outputs;
 }
