@@ -11,9 +11,10 @@
 #ifndef CHECK_HOMEWORK_COMPARISON_H_
 #define CHECK_HOMEWORK_COMPARISON_H_
 
-#define url_test "./test"
-#define url_input "./test/input.txt"
-#define url_output_standard "./test/output.txt"
+#define url_test "../test"
+#define url_input "../test/input.txt"
+#define url_output_standard "../test/output.txt"
+#define url_output_list "../outputs/school_number.txt"
 
 /***
  * automatically input .txt files under folder "/outputs"

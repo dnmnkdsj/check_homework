@@ -13,5 +13,6 @@
                 /wc.txt
     /outputs(include all students' program's output
         /*.txt(named with school number)
+        /school_number.txt(include school numbers of all students who submit homework, divided by '\n')
     /rank(output the result of comparison outputs, use csv file)
         /rank.csv

@@ -5,9 +5,9 @@
 #ifndef CHECK_HOMEWORK_RUNEXE_H_
 #define CHECK_HOMEWORK_RUNEXE_H_
 
-#define url_works "./works"
-#define url_outputs "./outputs"
-#define url_input "./test/input.txt"
+#define url_works "../works"
+#define url_outputs "../outputs"
+#define url_input "../test/input.txt"
 
 /***
  * runEXE function automatically run exe files under folder works
