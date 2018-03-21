@@ -15,6 +15,7 @@
 #define url_input "../test/input.txt"
 #define url_output_standard "../test/output.txt"
 #define url_output_list "../outputs/school_number.txt"
+#define url_outputs "../outputs"
 
 /***
  * automatically input .txt files under folder "/outputs"

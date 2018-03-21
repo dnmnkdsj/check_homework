@@ -4,9 +4,24 @@
 #include "comparison.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <stdbool.h>
+
+/***
+ * test function, print file for checking inside of the file
+ * //todo this function will be deleted.
+ * @param file
+ */
+void printfile(FILE * file) {
+	char tmp = fgetc(file);
+	while (tmp != EOF) {
+		printf("%c", tmp);
+		tmp = fgetc(file);
+	}
+}
 
 FILE *open_standard();
-FILE **open_outputs(FILE **);
+void open_outputs(FILE ** outputs);
 /**
  * compare students' program's output with standard output,and compute difference by line
  * @param standard
@@ -19,8 +34,19 @@ void comparison() {
 	printf("comparison run.\n");
 	//open files
 	FILE *standard = open_standard();
-	FILE **outputs[500];//todo design a data structure to handle outputs file
-//	outputs= open_outputs(outputs);
+	FILE **outputs = malloc(500*sizeof(FILE *));//use outputs pointer store output files
+	open_outputs(outputs);//store handle in ram,outputs is an array which stores a series of file handles
+
+	//todo compare files
+	//for each student's output, compare it with standard output
+
+	//close files
+	fclose(standard);
+	FILE **tag = outputs;
+	while (fclose(*tag)!=EOF) {
+		tag++;
+	}
+	free(outputs);
 	printf("comparison run completely.\n");
 }
 
@@ -33,18 +59,28 @@ FILE *open_standard() {
 	}
 	return output;
 }
-
-FILE ** open_outputs(FILE ** outputs) {
+void open_outputs(FILE ** outputs) {
 	FILE *list;
 	if ((list = fopen(url_output_list, "r")) == NULL) //open school number file.
 	{
 		printf("error: School number list file cannot be opened.\n");
 	}
-	char school_number[15];//ues char array as str to store school number and deliver
-	while (fgets(school_number, 15, list)) {//get number from list, end with "\n"
-		printf("%s", school_number);
-		//todo for each student, store it's file pointer into outputs array
-		//todo design error dealer
+
+	FILE **tag = outputs;//use tag to locate data pointer
+	char school_number[20];//ues char array as str to store school number and deliver
+
+	while (fgets(school_number, 20, list)) {//get number from list, end with "\n"
+
+		//get url for each student's file
+		char string_output[100] = url_outputs;
+		strcat(string_output,"/");
+		strcat(string_output,strtok(school_number,"\n"));
+		strcat(string_output,".txt");
+
+		//open students' output file
+		if ((*tag = fopen(string_output, "r")) == NULL) {
+			printf("error: open student's outputfile %s failed.\n", string_output);
+		}
+		tag++;
 	}
-	return outputs;
 }
